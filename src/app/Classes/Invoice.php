@@ -11,6 +11,11 @@ class Invoice
 
     public function create(): string
     {
-        return "Create Invoice";
+        return "<form action='/invoices/create' method='post'><input type='text' name='invoice'></form>";
+    }
+
+    public function store(): void
+    {
+        var_dump($_POST);
     }
 }
