@@ -1,5 +1,6 @@
 .vscode/
 src/vendor
-composer.lock
+src/composer.lock
 .idea/
 _docker/storage/
+src/.env
