@@ -24,3 +24,8 @@ This is a php8 Nginx & MySQL instance for local dev using Docker
     - db port: 31003
 
 See Dockerfile and docker-compose.yml for configuration details.
+
+Create a database connection as follows:-
+
+`$db = new \PDO("mysql:host=" . $_ENV['DB_HOST'] . ";dbname=" . $_ENV['DB_DATABASE'] . ";", $_ENV['DB_USER'], $_ENV['DB_PASSWORD']);`
+

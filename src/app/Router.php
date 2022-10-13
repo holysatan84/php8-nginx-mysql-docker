@@ -32,7 +32,6 @@ class Router
 
     public function resolve(string $stringUrl, string $requestType = null)
     {
-//        echo $requestType; die;
         $route = explode("?",$stringUrl)[0];
         $action = $this->routes[$requestType][$route] ?? null;
 
