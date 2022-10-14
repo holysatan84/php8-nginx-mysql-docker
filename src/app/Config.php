@@ -5,10 +5,9 @@ namespace App;
 class Config
 {
 
+  protected array $config = [];
 
-    protected array $config = [];
-
-    public function __construct(private array $env)
+    public function __construct(array $env)
     {
         $this->config = [
             'db' => [

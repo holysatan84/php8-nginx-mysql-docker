@@ -1,3 +1,7 @@
 <form action='/invoices/create' method='post'>
-    <input type='text' name='invoice'>
+<label>Name    <input type='text' name='name'>
+</label>
+<label> Amount   <input type='text' name='amount'>
+</label>
+    <button type="submit">Submit</button>
 </form>

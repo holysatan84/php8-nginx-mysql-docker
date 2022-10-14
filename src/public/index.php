@@ -2,8 +2,13 @@
 declare(strict_types=1);
 
 use App\Config;
+  use App\Container;
+  use App\Router;
+  use App\Controllers\HomeController;
+  use App\Controllers\InvoiceController;
 
-session_start();
+
+  session_start();
 
 $autoloadFile = __DIR__ . "/../vendor/autoload.php";
 if (!file_exists($autoloadFile)) exit("run composer install");
@@ -14,13 +19,14 @@ $dotenv->load();
 
 define('VIEW_PATH', __DIR__ . '/../app/views/');
 
-$router = new \App\Router();
+  $container = new Container();
+  $router    = new Router($container);
 
 $router
-    ->get('/', [App\Controllers\HomeController::class, 'index'])
-    ->get('/invoices', [App\Controllers\InvoiceController::class, 'index'])
-    ->get('/invoices/create', [App\Controllers\InvoiceController::class, 'create'])
-    ->post('/invoices/create', [App\Controllers\InvoiceController::class, 'store']);
+    ->get('/', [HomeController::class, 'index'])
+    ->get('/invoices', [InvoiceController::class, 'index'])
+    ->get('/invoices/create', [InvoiceController::class, 'create'])
+    ->post('/invoices/create', [InvoiceController::class, 'store']);
 
 (
     new App\App(
