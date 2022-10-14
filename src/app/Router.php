@@ -6,7 +6,7 @@ use App\Exception\RouteNotFoundException;
 
 class Router
 {
-    private array $routes;
+    private array $routes = [];
 
     public function register(string $requestType, string $route, callable|array $action): self
     {
