@@ -3,9 +3,7 @@
   namespace App;
 
   use App\Exception\Container\ContainerException;
-  use App\Exception\NotFoundException;
   use Psr\Container\ContainerInterface;
-  use Psr\Container\NotFoundExceptionInterface;
 
   class Container implements ContainerInterface
   {
