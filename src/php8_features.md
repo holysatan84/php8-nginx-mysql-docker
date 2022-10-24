@@ -189,8 +189,36 @@ echo $arrow_Result = $arrows_sum($x, $y, $z);
 
 - [Lesson 2.0 - Intro to Object Oriented PHP](https://youtu.be/1SujQeVK4MU)
 - [Lesson 2.1 - Docker - Nginx - FPM](https://youtu.be/I_9-xWmkh28)
+---
 - [Lesson 2.2 - Classes & Objects](https://youtu.be/6FW72q5fIx8)
+  - By default, if function modifier is not defined it is set to public
+  - Also, when a property is not set for an class object it's value is `uninitialized`
+  - Multiple methods for a function that apply business logic on a class object could be chained
+    ```php
+    $transactionAmtWithTaxAndDiscount = new Transaction(100, 'Transaction 1')
+                                            ->addTax('8')
+                                            ->applyDiscount('10')
+                                            ->getAmount();
+    ```
+  - Std Class: Obects of std class can we created by creating an object of `stdClass()` or typecasting other types 
+    to objects
+   
+    ```php
+    #creating a new object of stdClass()
+    $obj = new stdClass();
+    $obj->a = 1;
+    $obj->b = 2;
+    
+    #typecasting other types to object
+    $arr = [1,2,3];
+    $obj = (object) $arr;
+    echo $arr->{0} . $arr->{1} . $arr->{2};
+    
+    var_dump((object) 1); # object(stdClass)[1] public 'scalar' => int 1
+    ```
+---
 - [Lesson 2.3 - Constructor Property Promotion](https://youtu.be/T1PbFz-o6kw)
+- 
 - [Lesson 2.4 - Namespaces](https://youtu.be/Jni9c0-NjrY)
 - [Lesson 2.5 - Composer - PSR - Autoloading](https://youtu.be/rqzYdHdyMH0)
 - [Lesson 2.6 - Class Constants](https://youtu.be/bEGNvUxYf2o)
