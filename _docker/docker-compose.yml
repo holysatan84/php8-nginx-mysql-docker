@@ -1,5 +1,4 @@
 version: '3.8'
-
 services:
   app:
     build:
@@ -15,11 +14,10 @@ services:
     container_name: nginx-web
     restart: always
     ports:
-      - 80:80
+      - 8000:80
     volumes:
       - ../src:/var/www
       - ./_config/_nginx:/etc/nginx/conf.d
-
   mysql-db:
     image: mysql:8.0
     container_name: mysql-db
@@ -35,7 +33,6 @@ services:
         VIRTUAL_HOST: mysql.local
     ports:
         - "31003:3306"
-
 networks:
   default:
     name: app_main_network
