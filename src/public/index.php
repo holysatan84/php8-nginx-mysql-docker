@@ -1,7 +1,9 @@
 <?php 
 declare(strict_types = 1);
 
-session_start();
+    use App\Controllers\Transactions;
+
+    session_start();
 
 $autoloadFile = __DIR__ . "/../vendor/autoload.php";
 if(!file_exists($autoloadFile))  exit("run composer install");
@@ -11,4 +13,6 @@ $dotenv = Dotenv\Dotenv::createImmutable(dirname(__DIR__));
 $dotenv->load();
 
 
-phpinfo();
+$transaction = new Transactions();
+
+$transaction->transactions();
