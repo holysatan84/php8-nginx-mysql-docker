@@ -208,7 +208,7 @@ echo $arrow_Result = $arrows_sum($x, $y, $z);
     $obj = new stdClass();
     $obj->a = 1;
     $obj->b = 2;
-    
+   
     #typecasting other types to object
     $arr = [1,2,3];
     $obj = (object) $arr;
@@ -217,8 +217,30 @@ echo $arrow_Result = $arrows_sum($x, $y, $z);
     var_dump((object) 1); # object(stdClass)[1] public 'scalar' => int 1
     ```
 ---
-- [Lesson 2.3 - Constructor Property Promotion](https://youtu.be/T1PbFz-o6kw)
-- 
+
+- [Lesson 2.3 - Constructor Property Promotion](https://youtu.be/T1PbFz-o6kw)\
+  - Added as part of PHP8
+  - typehinting callable with promotion is not allowed
+  - Partly properties can be promoted
+    ```php
+    declare(strict_types=1);
+    
+    class Transaction
+    {
+        public function __construct(private float $amount, private string $description) {}
+    }
+    ```
+  - Null safe operator prevents calls on null/undefined properties and function
+  - It short circuits whenever a null is encountered and doesnt execute the functionality after it. Which could be 
+    an issue
+    ```php
+    declare(strict_types=1);
+    # null safe operator on a property  
+    echo $transaction->customer?->profile?->id; 
+    # null safe operator on a class function  
+    echo $transaction->getCustomer()?->getProfile()?->id; 
+    ```
+---
 - [Lesson 2.4 - Namespaces](https://youtu.be/Jni9c0-NjrY)
 - [Lesson 2.5 - Composer - PSR - Autoloading](https://youtu.be/rqzYdHdyMH0)
 - [Lesson 2.6 - Class Constants](https://youtu.be/bEGNvUxYf2o)
