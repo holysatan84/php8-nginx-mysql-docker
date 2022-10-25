@@ -309,7 +309,13 @@ echo $arrow_Result = $arrows_sum($x, $y, $z);
     - All methods and properties are inherited which could not be essentially available in the inherited class.
 ---
 - [Lesson 2.10 - Abstract Classes & Methods](https://youtu.be/UnwaW13xJuw)
+---
 - [Lesson 2.11 - Interfaces & Polymorphism](https://youtu.be/-AJic0FjuAA)
+  - Interfaces can have constants. These cannot be overriden in child classes.
+  - Interface can extend multiple interfaces
+  - If there are same functions defined in multiple interfaces they should have the same signatures.
+  - Concrete classes can implement multiple interfaces 
+---
 - [Lesson 2.12 - Magic Methods](https://youtu.be/nCxnzj83poQ)
 - [Lesson 2.13 - Late Static Binding](https://youtu.be/4W5t8g3Rp_0)
 - [Lesson 2.14 - Traits](https://youtu.be/PMruqUC4Qpc)
