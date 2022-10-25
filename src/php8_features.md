@@ -1,8 +1,9 @@
 # Learn PHP The Right Way
 
-This is kind of an outline of my Learn PHP The Right Way series on youtube. The series is split in three sections & all the videos are within the following [playlist](https://youtube.com/playlist?list=PLr3d3QYzkw2xabQRUpcZ_IBk9W50M9pe-). Below is list of the videos with their appropriate section & lesson number.
+This is kind of an outline of my Learn PHP The Right Way series on YouTube. The series is split in three sections & 
+all the videos are within the following [playlist](https://youtube.com/playlist?list=PLr3d3QYzkw2xabQRUpcZ_IBk9W50M9pe-). Below is list of the videos with their appropriate section & lesson number.
 
-The series is up to date with PHP version 8.1. I will try my best to keep this series up to date as the new PHP versions come out. Feel free to open a PR if you notice a typo or a mistake or let me know.
+The series is up-to-date with PHP version 8.1. I will try my best to keep this series up to date as the new PHP versions come out. Feel free to open a PR if you notice a typo or a mistake or let me know.
 
 # Section 1 - Basic PHP
 
@@ -19,7 +20,7 @@ $foo = bar;
 $$foo = 'baz';
 
 echo $foo, $bar;
-// barbaz
+// bar baz
 echo "$foo, $$foo";
 // bar, baz
 echo "$foo, ${$foo}";
@@ -95,7 +96,7 @@ var_dump(0 == 'hello');
 - [Lesson 1.18 - Match Expression](https://youtu.be/jCUyvHUKSmE)
 
 ### diff between switch and match
-- `switch` does a lose `(==)` comparision. In a `switch` if no condition is matched and the default is not specified 
+- `switch` does a loose `(==)` comparison. In a `switch` if no condition is matched and the default is not specified 
 then it would not throw an error. The  `default` case is not mandatory in a `switch` v/s `match` whereas if a condition 
 is not met and is default is not specified it would  throw an error. 
 ```php
@@ -187,12 +188,12 @@ echo $arrow_Result = $arrows_sum($x, $y, $z);
 
 # Section 2 - Intermediate PHP (OOP)
 
-- [Lesson 2.0 - Intro to Object Oriented PHP](https://youtu.be/1SujQeVK4MU)
+- [Lesson 2.0 - Intro to Object-Oriented PHP](https://youtu.be/1SujQeVK4MU)
 - [Lesson 2.1 - Docker - Nginx - FPM](https://youtu.be/I_9-xWmkh28)
 ---
 - [Lesson 2.2 - Classes & Objects](https://youtu.be/6FW72q5fIx8)
   - By default, if function modifier is not defined it is set to public
-  - Also, when a property is not set for an class object it's value is `uninitialized`
+  - Also, when a property is not set for a class object it's value is `uninitialized`
   - Multiple methods for a function that apply business logic on a class object could be chained
     ```php
     $transactionAmtWithTaxAndDiscount = new Transaction(100, 'Transaction 1')
@@ -200,7 +201,7 @@ echo $arrow_Result = $arrows_sum($x, $y, $z);
                                             ->applyDiscount('10')
                                             ->getAmount();
     ```
-  - Std Class: Obects of std class can we created by creating an object of `stdClass()` or typecasting other types 
+  - Std Class: Objects of std class can we created by creating an object of `stdClass()` or typecasting other types 
     to objects
    
     ```php
@@ -220,7 +221,7 @@ echo $arrow_Result = $arrows_sum($x, $y, $z);
 
 - [Lesson 2.3 - Constructor Property Promotion](https://youtu.be/T1PbFz-o6kw)\
   - Added as part of PHP8
-  - typehinting callable with promotion is not allowed
+  - Type-hinting callable with promotion is not allowed
   - Partly properties can be promoted
     ```php
     declare(strict_types=1);
@@ -231,7 +232,7 @@ echo $arrow_Result = $arrows_sum($x, $y, $z);
     }
     ```
   - Null safe operator prevents calls on null/undefined properties and function
-  - It short circuits whenever a null is encountered and doesnt execute the functionality after it. Which could be 
+  - It shorts circuits whenever a null is encountered and doesnt execute the functionality after it. Which could be 
     an issue
     ```php
     declare(strict_types=1);
@@ -249,7 +250,7 @@ echo $arrow_Result = $arrows_sum($x, $y, $z);
 - [Lesson 2.6 - Class Constants](https://youtu.be/bEGNvUxYf2o)
 ---
 - [Lesson 2.7 - Static Properties & Methods](https://youtu.be/6VVN-2SCx7Q)
-  - Static properties are shared across objects of a partuicular class
+  - Static properties are shared across objects of a particular class
   - Static elements can be accessed using `static`, `self` or `parent` keywords
   - Non-static properties invocation using static method would throw fatal error.
   - Non-static method invocation using static method would throw a deprecation prior to PHP8 and a fatal error after that.
@@ -278,7 +279,7 @@ echo $arrow_Result = $arrows_sum($x, $y, $z);
     ```
 ---
 - [Lesson 2.8 - OOP Principles - Encapsulation & Abstraction](https://youtu.be/kA9BTNPFObo)
-  - Do not create getters and setters on every property until needed
+  - Do not create getter and setters on every property until needed
   - Keep internal functionality as private methods to prevent accidentally calling them
   - Reflection class can override restricted access to properties and function
     ```php
@@ -294,14 +295,12 @@ echo $arrow_Result = $arrows_sum($x, $y, $z);
     ```
 ---
 - [Lesson 2.9 - Inheritance](https://youtu.be/LyyzeYOoH5s)
-  - Visibility of overriden properties and functions can only be increased. 
+  - Visibility of overridden properties and functions can only be increased. 
   - Parent constructor must be called explicitly in the override constructor if its functionality is required. The 
     default behaviour is that it would override if not called. Syntax: `parent::__construct();`
   - Signature of the child class must be compatible with the signature of the parent class. If not it would throw an 
-    Fatal error. Overriden methods could have additional properties though. Please not, this does not apply to 
-    constructors 
-    where 
-    changing signatures is allowed
+    Fatal error. Overridden methods could have additional properties though. Please not, this does not apply to 
+    constructors where changing signatures is allowed
   - **'is-A' relation makes a good case for inheritance, else if it has a 'has-A' relation composition makes a better 
     case.**
   - Disadvantages of inheritances:-
@@ -311,13 +310,89 @@ echo $arrow_Result = $arrows_sum($x, $y, $z);
 - [Lesson 2.10 - Abstract Classes & Methods](https://youtu.be/UnwaW13xJuw)
 ---
 - [Lesson 2.11 - Interfaces & Polymorphism](https://youtu.be/-AJic0FjuAA)
-  - Interfaces can have constants. These cannot be overriden in child classes.
+  - Interfaces can have constants. These cannot be overridden in child classes.
   - Interface can extend multiple interfaces
   - If there are same functions defined in multiple interfaces they should have the same signatures.
   - Concrete classes can implement multiple interfaces 
 ---
 - [Lesson 2.12 - Magic Methods](https://youtu.be/nCxnzj83poQ)
+  - `__get`, `__set` magic methods when overridden, would not throw an error when property is not set on an object
+  - `__call` and `__callStatic` are used to channelize all calls to functions not defined on a class
+    ```php
+    <?php
+    class MethodTest
+    {
+        public function __call($name, $arguments)
+        {
+            // Note: value of $name is case sensitive.
+            echo "Calling object method '$name' "
+                 . implode(', ', $arguments). "\n";
+        }
+    
+        public static function __callStatic($name, $arguments)
+        {
+            // Note: value of $name is case sensitive.
+            echo "Calling static method '$name' "
+                 . implode(', ', $arguments). "\n";
+        }
+    }
+    
+    $obj = new MethodTest;
+    $obj->runTest('in object context');
+    
+    MethodTest::runTest('in static context');
+    ?>
+    ```
+  - `__toString()` The __toString() method allows a class to decide how it will react when it is treated like a string. 
+  For example, what echo $obj; will print.
+    ```php
+    public function __call(string $name, $arguments) {}
+    public function __callStatic(string $name, $arguments) {} 
+    ```
+  - The `__invoke()` method is called when a script tries to call an object as a function. 
+    ```php
+    <?php
+    class CallableClass
+    {
+        public function __invoke($x)
+        {
+            var_dump($x);
+        }
+    }
+    $obj = new CallableClass;
+    $obj(5);
+    var_dump(is_callable($obj));
+    ?>
+    ```
+---
 - [Lesson 2.13 - Late Static Binding](https://youtu.be/4W5t8g3Rp_0)
+  - `self` resolves at compile time while `static` resolves at run time.
+  - `$this->someFunction()` resolves at runtime v/s `ClassName::someFunction()` resolves at compile time 
+  - `static` could be a return type instead of the self which returns the object by run time compilation rather than 
+    compile time compilation
+    ```php
+    class A
+    {
+        public static function makeStatic(): static
+        {
+            return new static();
+        }
+        public static function make(): self
+        {
+            return new self;
+        }
+    }
+    class B extends A
+    {} 
+    
+    var_dump(A::make()); #object(A)
+    var_dump(B::make()); #object(A)
+    var_dump(A::makeStatic()); #object(A)
+    var_dump(B::makeStatic()); #object(B)
+    
+    ```
+
+---
 - [Lesson 2.14 - Traits](https://youtu.be/PMruqUC4Qpc)
 - [Lesson 2.15 - Anonymous Classes](https://youtu.be/zQ4Znj3RT3E)
 - [Lesson 2.16 - Object Comparison - Variable Storage & Zend Value (zval) Container](https://youtu.be/zCGmZb3z-r8)
