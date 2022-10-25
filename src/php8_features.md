@@ -246,10 +246,68 @@ echo $arrow_Result = $arrows_sum($x, $y, $z);
 - [Lesson 2.5 - Composer - PSR - Autoloading](https://youtu.be/rqzYdHdyMH0)
   - Composer should ideally be loaded as a different instance in production
 ---
-- - [Lesson 2.6 - Class Constants](https://youtu.be/bEGNvUxYf2o)
+- [Lesson 2.6 - Class Constants](https://youtu.be/bEGNvUxYf2o)
+---
 - [Lesson 2.7 - Static Properties & Methods](https://youtu.be/6VVN-2SCx7Q)
+  - Static properties are shared across objects of a partuicular class
+  - Static elements can be accessed using `static`, `self` or `parent` keywords
+  - Non-static properties invocation using static method would throw fatal error.
+  - Non-static method invocation using static method would throw a deprecation prior to PHP8 and a fatal error after that.
+  - use cases - singleton implementation, caching, counters
+  - Static closures ensure that the `$this` object is not available in the closure, which may mistakenly update the 
+    object 
+    ```php
+    <?php
+    
+    namespace App;
+    
+    class DB
+    {
+        public static ?DB $instance = null;
+        private function __construct(public array $config){}
+        
+        public static function getInstance(array $config): DB
+        {
+            if (self::$instance === null) {
+                self::$instance = new DB($config);
+            }
+            return self::$instance;
+        }
+    }
+    
+    ```
+---
 - [Lesson 2.8 - OOP Principles - Encapsulation & Abstraction](https://youtu.be/kA9BTNPFObo)
+  - Do not create getters and setters on every property until needed
+  - Keep internal functionality as private methods to prevent accidentally calling them
+  - Reflection class can override restricted access to properties and function
+    ```php
+        class Transaction {
+            public function __construct(private int $amount) {}
+        }
+      
+        $transaction = new Transaction(25);
+        $reflectionProperty = new ReflectionPrperty(Transtation::class, 'amount');
+        $reflectionProperty->setAccessible(true);
+        $reflectionProperty->setValue($transaction, 125);
+      
+    ```
+---
 - [Lesson 2.9 - Inheritance](https://youtu.be/LyyzeYOoH5s)
+  - Visibility of overriden properties and functions can only be increased. 
+  - Parent constructor must be called explicitly in the override constructor if its functionality is required. The 
+    default behaviour is that it would override if not called. Syntax: `parent::__construct();`
+  - Signature of the child class must be compatible with the signature of the parent class. If not it would throw an 
+    Fatal error. Overriden methods could have additional properties though. Please not, this does not apply to 
+    constructors 
+    where 
+    changing signatures is allowed
+  - **'is-A' relation makes a good case for inheritance, else if it has a 'has-A' relation composition makes a better 
+    case.**
+  - Disadvantages of inheritances:-
+    - It could break encapsulation by overriding default properties and changing the desired behaviour of the class.
+    - All methods and properties are inherited which could not be essentially available in the inherited class.
+---
 - [Lesson 2.10 - Abstract Classes & Methods](https://youtu.be/UnwaW13xJuw)
 - [Lesson 2.11 - Interfaces & Polymorphism](https://youtu.be/-AJic0FjuAA)
 - [Lesson 2.12 - Magic Methods](https://youtu.be/nCxnzj83poQ)
