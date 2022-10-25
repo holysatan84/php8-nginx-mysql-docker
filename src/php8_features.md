@@ -242,8 +242,11 @@ echo $arrow_Result = $arrows_sum($x, $y, $z);
     ```
 ---
 - [Lesson 2.4 - Namespaces](https://youtu.be/Jni9c0-NjrY)
+---
 - [Lesson 2.5 - Composer - PSR - Autoloading](https://youtu.be/rqzYdHdyMH0)
-- [Lesson 2.6 - Class Constants](https://youtu.be/bEGNvUxYf2o)
+  - Composer should ideally be loaded as a different instance in production
+---
+- - [Lesson 2.6 - Class Constants](https://youtu.be/bEGNvUxYf2o)
 - [Lesson 2.7 - Static Properties & Methods](https://youtu.be/6VVN-2SCx7Q)
 - [Lesson 2.8 - OOP Principles - Encapsulation & Abstraction](https://youtu.be/kA9BTNPFObo)
 - [Lesson 2.9 - Inheritance](https://youtu.be/LyyzeYOoH5s)
