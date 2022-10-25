@@ -496,12 +496,21 @@ echo $arrow_Result = $arrows_sum($x, $y, $z);
     should be used instead.
   - :skull: Traits could override final functions which could be a disaster waiting to happen.
 ---
-- [Lesson 2.15 - Anonymous Classes](https://youtu.be/zQ4Znj3RT3E)  
-```php
-$obj = new class () {
+- [Lesson 2.15 - Anonymous Classes](https://youtu.be/zQ4Znj3RT3E)
+  - Majorly used for mocking during testing
+  - Can implement interfaces, extend classes
+  - They do not have a name and hence cannot be used for type hinting.
 
-}   
-```
+    ```php
+    $obj = new class () {
+        public function __construct()
+        {
+            echo "called anon class";
+        }
+    };
+    
+    var_dump($obj); #called anon class
+    ```
 - [Lesson 2.16 - Object Comparison - Variable Storage & Zend Value (zval) Container](https://youtu.be/zCGmZb3z-r8)
 - [Lesson 2.17 - DocBlock](https://youtu.be/hdDD0SNJ-pk)
 - [Lesson 2.18 - Object Cloning](https://youtu.be/vLmIoy6Bnog)
