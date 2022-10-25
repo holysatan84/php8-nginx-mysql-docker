@@ -394,7 +394,114 @@ echo $arrow_Result = $arrows_sum($x, $y, $z);
 
 ---
 - [Lesson 2.14 - Traits](https://youtu.be/PMruqUC4Qpc)
-- [Lesson 2.15 - Anonymous Classes](https://youtu.be/zQ4Znj3RT3E)
+  - Traits were introduced in to overcome the inheritance diamond problem and reduce duplication and increase reuse
+  - Traits is simply copy and paste, all the code from the trait is copied to the class that it uses
+  - Objects of traits cannot be instantiated. They can be used in other traits or classes using the `use` keyword
+    ```php
+    class CoffeeMaker
+    {
+        protected string $eol = "<br/>";
+        public function makeCoffee() { echo static::class . ' is making Coffee' . $this->eol; }
+    }
+    
+    trait CappuccinoTrait
+    {
+        public function makeCappuccino() { echo static::class . ' is making cappuccino' . $this->eol; }
+    }
+    trait LatteTrait
+    {
+        public function makeLatte() { echo static::class . ' is making Latte' . $this->eol;}
+    }
+    
+    class CappuccinoMaker extends CoffeeMaker{ use CappuccinoTrait; }
+    
+    
+    class LatteMaker extends CoffeeMaker { use LatteTrait; }
+    
+    class AllInOneMaker extends CoffeeMaker { use LatteTrait; use CappuccinoTrait; }
+    
+    $coffeeMaker = new CoffeeMaker();
+    $coffeeMaker->makeCoffee(); #CoffeeMaker is making Coffee
+    
+    $latteMaker = new LatteMaker();
+    $latteMaker->makeCoffee(); #LatteMaker is making Coffee
+    $latteMaker->makeLatte(); #LatteMaker is making Latte
+
+    
+    $cappuccinoMaker = new CappuccinoMaker();
+    $cappuccinoMaker->makeCoffee(); #CappuccinoMaker is making Coffee
+    $cappuccinoMaker->makeCappuccino(); #CappuccinoMaker is making cappuccino
+    
+    $allInOneCoffeeMaker = new AllInOneMaker();
+    $allInOneCoffeeMaker->makeCoffee(); #AllInOneMaker is making Coffee
+    $allInOneCoffeeMaker->makeLatte(); #AllInOneMaker is making Latte
+    $allInOneCoffeeMaker->makeCappuccino(); #AllInOneMaker is making cappuccino
+    ```
+  - Redefined class functions have override the functions defined in the trait. But traits used in derived class 
+    would override the function defined in the base class 
+    ```php
+        class LatteMaker extends CoffeeMaker { use LatteTrait;
+            public function makeLatte() { echo static::class . ' is making Updated Latte' . $this->eol;}
+        }
+        $latteMaker->makeLatte(); #LatteMaker is making Updated Latte
+    ```
+  - The diamond problem can also occur while using multiple traits, which could be resolved using `insteadof` 
+    operator 
+    ```php
+    class AllInOneMaker extends CoffeeMaker { 
+        use LatteTrait; 
+        use CappuccinoTrait {
+            LattheTrait::makeLatte insteadof CappuccinoTrait;
+        } 
+    }
+    ```
+
+    ```php
+    class AllInOneMaker extends CoffeeMaker { 
+        use LatteTrait {
+            LatteTrait::makeLatte as makeOriginalLatte;       
+        }    
+        use CappuccinoTrait;
+    }
+    $latteMaker = new LatteMaker();
+    $latteMaker->makeOriginalLatte();
+    ```
+  - Visibility of function can be overridden in the traits which could spell disaster in terms of encapsulation
+    ```php
+    class AllInOneMaker extends CoffeeMaker { 
+        use LatteTrait {
+            LatteTrait::makeLatte as public;       
+        }    
+        use CappuccinoTrait;
+    }
+    $latteMaker = new LatteMaker();
+    $latteMaker->makeOriginalLatte();
+    ```
+  - Properties can be set in traits. Please note that the classes using the traits cannot define the same properties 
+    with a different type, visibility and default value.
+  - :skull: Traits can use the properties and functions defined in the class which use it. This increases ambiguity 
+    in and is 
+    not the best way of implementing traits.
+  - If the trait needs to enforce a method to be implemented by the class it would be used in, it could define an 
+    abstract method. Please note the trait does not have to be abstract in that case.  Public, protected, and private 
+    methods are supported. Prior to PHP 8.0.0, only public and protected abstract methods were supported.
+  - Traits can define static variables, static methods and static properties. As of PHP 8.1.0, calling a static method, 
+    or accessing a static property directly on a trait is deprecated. Static methods and properties should only be 
+    accessed on a class using the trait.
+  - :skull: When static properties defined in trait are used in different classes, objects of each class would have 
+    its own
+    instance of the static property which would not be shared between them. 
+  - :skull: Using abstract methods in traits to enforce contracts is not the best way of implementing contracts. 
+    Interfaces 
+    should be used instead.
+  - :skull: Traits could override final functions which could be a disaster waiting to happen.
+---
+- [Lesson 2.15 - Anonymous Classes](https://youtu.be/zQ4Znj3RT3E)  
+```php
+$obj = new class () {
+
+}   
+```
 - [Lesson 2.16 - Object Comparison - Variable Storage & Zend Value (zval) Container](https://youtu.be/zCGmZb3z-r8)
 - [Lesson 2.17 - DocBlock](https://youtu.be/hdDD0SNJ-pk)
 - [Lesson 2.18 - Object Cloning](https://youtu.be/vLmIoy6Bnog)
