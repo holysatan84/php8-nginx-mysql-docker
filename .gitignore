@@ -5,3 +5,4 @@ src/composer.lock
 _docker/storage/
 src/.env
 src/.phpunit.*
+.phpunit.result.cache
